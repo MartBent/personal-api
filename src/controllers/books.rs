@@ -1,6 +1,8 @@
 use actix_web::{get, HttpRequest, Responder};
 use log::info;
 
+use crate::database::books;
+
 fn base(req: &HttpRequest) {
     info!("Received {} request from {:?}", req.method(), req.peer_addr().unwrap())
 }
@@ -8,7 +10,5 @@ fn base(req: &HttpRequest) {
 #[get("/")]
 async fn retrieve(req: HttpRequest) -> impl Responder {
     base(&req);
-
-    let result = format!("Hello, {:?}", req.peer_addr().unwrap());
-    result
+    format!("{:?}", books::get_books().await)
 }

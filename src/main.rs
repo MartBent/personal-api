@@ -2,7 +2,9 @@ use actix_cors::Cors;
 use actix_web::{App, HttpServer};
 use std::io::Result;
 
-mod controllers;
+pub mod controllers;
+pub mod database;
+pub mod models;
 
 #[actix_rt::main]
 async fn main() -> Result<()> {
@@ -12,7 +14,7 @@ async fn main() -> Result<()> {
         let cors = Cors::permissive();
         App::new()
             .wrap(cors)
-            .service(controllers::retrieve)
+            .service(controllers::books::retrieve)
     })
     .bind("0.0.0.0:9090")?
     .run()
