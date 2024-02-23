@@ -14,7 +14,7 @@ async fn main() -> Result<()> {
         let cors = Cors::permissive();
         App::new()
             .wrap(cors)
-            .service(controllers::books::retrieve)
+            .service(controllers::audio::stream_audio)
     })
     .bind("0.0.0.0:9090")?
     .run()

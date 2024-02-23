@@ -1,8 +1,7 @@
 use log::error;
 use futures::stream::TryStreamExt;
-
 use crate::models::book::Book;
-use super::mongodb::get_document;
+use super::get_document;
 
 const COLLECTION_NAME: &str = "books";
 
